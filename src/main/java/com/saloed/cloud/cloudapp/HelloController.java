@@ -31,15 +31,13 @@ public class HelloController {
 
     @GetMapping("/fetch-data")
     public String fetchDataFromServiceB() {
-        // Получаем список инстансов service-b
-        String serviceUrl = discoveryClient.getInstances(CLOUD_APP_B)
-            .stream()
-            .findFirst()
-            .map(si -> si.getUri().toString())
-            .orElseThrow(() -> new RuntimeException("Service % not found!".formatted(CLOUD_APP_B)));
+//        String serviceUrl = discoveryClient.getInstances(CLOUD_APP_B)
+//            .stream()
+//            .findFirst()
+//            .map(si -> si.getUri().toString())
+//            .orElseThrow(() -> new RuntimeException("Service % not found!".formatted(CLOUD_APP_B)));
 
-        // Отправляем запрос к service-b
-        String data = restTemplate.getForObject(serviceUrl + "/data", String.class);
+        String data = restTemplate.getForObject("http://" + CLOUD_APP_B + "/data", String.class);
         return "Received from " + CLOUD_APP_B + ": " + data;
     }
 }
