@@ -1,0 +1,5 @@
+### Refresh Config Files
+POST http://localhost:8080/actuator/refresh
+
+###
+
